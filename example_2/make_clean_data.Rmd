@@ -1,9 +1,7 @@
 ---
 title: 'Futility of Utility Modelling'
 author: Neil Stewart
-#date: '`r format(Sys.time(), "%d %B %Y")`'
-bibliography: refs.bib
-#csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
+date: '`r format(Sys.time(), "%d %B %Y")`'
 output: 
    html_document:
     toc: true
@@ -14,23 +12,16 @@ output:
 
 ```{r setup, echo=FALSE}
 library(data.table)
-#library(ggplot2)
-#library(gridExtra)
-
 library(lattice)
 library(latticeExtra)
 library(gtools)
-#library(Rmisc)
-#library(lme4)
-#library(boot)
-#library(MuMIn)
-#library(reshape2)
-#library(data.table)
-#library(lsmeans)
-#source("xyplot_error_bars.R")
-
-#theme_set(theme_classic())
 ```
+
+```{r}
+sessionInfo()
+```
+
+This file cleans the trial-level data and removes outliers as described in Appendix A of Stewart, Canic, and Mullett (2020)
 
 # Read in data
 
@@ -64,7 +55,7 @@ demographics$sub.id <- factor(demographics$sub.id, levels=mixedsort(unique(demog
 demographics$experiment.duration <- demographics$experiment.duration/1000/60 # to get to minutes from ms
 demographics$time <- as.POSIXct(demographics$time, format="%T %a %d %b %y")
 
-# For the MTurk experiment, stud was incorrectly run in £ until Wednesday 2 September 2015 when it was switched to $
+# For the MTurk experiment, study was incorrectly run in £ until Wednesday 2 September 2015 when it was switched to $
 
 choices <- read.csv("choices.csv", as.is=TRUE)
 choices$condition <- factor(choices$cond, levels=c("Positive", "Uniform", "Both"))
