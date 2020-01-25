@@ -1,0 +1,178 @@
+sub.id,sub.no,cond,experiment.duration,user.agent,PA.id,verification,time,ip
+1,14,Both,197614,"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",558ffe16fdf99b3f7aada34d,6HFVEW46,19:54:17 Tue 01 Sep 15,71.31.200.105
+2,26,Both,297330,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",5589b65afdf99b118adfa595,6HFVEW46,19:56:40 Tue 01 Sep 15,76.180.56.116
+3,13,Uniform,414287,"Mozilla/5.0 (Windows NT 10.0 WOW64 rv:40.0) Gecko/20100101 Firefox/40.0",55b67c31fdf99b26b999cc1e,6HFVEW46,19:57:50 Tue 01 Sep 15,68.57.55.155
+4,16,Uniform,445453,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",5590070afdf99b3f7aada3c5,6HFVEW46,19:58:32 Tue 01 Sep 15,24.16.250.189
+5,5,Both,535979,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55c675ecfdf99b620ff9e227,6HFVEW46,19:59:32 Tue 01 Sep 15,78.150.219.99
+6,19,Uniform,518096,"Mozilla/5.0 (Windows NT 6.3 WOW64 rv:34.0) Gecko/20100101 Firefox/34.0",55bf96b9fdf99b2d6e385ae7,6HFVEW46,20:00:07 Tue 01 Sep 15,190.192.138.19
+7,20,Both,565650,"Mozilla/5.0 (Windows NT 10.0 WOW64 rv:40.0) Gecko/20100101 Firefox/40.0",55cb7bb3fdf99b3ca7b9562f,6HFVEW46,20:00:56 Tue 01 Sep 15,45.47.106.124
+8,1,Uniform,686038,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",5424ac42fdf99b691fb38500,6HFVEW46,20:01:04 Tue 01 Sep 15,75.128.70.130
+9,17,Both,609534,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",558ad983fdf99b7c7a5d423e,6HFVEW46,20:01:19 Tue 01 Sep 15,173.74.44.9
+10,28,Uniform,605825,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",5589c7cefdf99b18bd86cf31,6HFVEW46,20:02:05 Tue 01 Sep 15,184.176.139.21
+11,23,Both,644816,"Mozilla/5.0 (Windows NT 6.0 rv:40.0) Gecko/20100101 Firefox/40.0",55ba8bc7fdf99b3acb355bb5,6HFVEW46,20:02:22 Tue 01 Sep 15,73.53.85.195
+12,6,Positive,714979,"Mozilla/5.0 (Windows NT 6.3 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",5588b9e5fdf99b7f40e7f428,6HFVEW46,20:02:33 Tue 01 Sep 15,73.175.118.202
+13,24,Positive,677901,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55008c4afdf99b65ef694b2c,6HFVEW46,20:02:54 Tue 01 Sep 15,86.180.73.217
+14,32,Both,416198,"Mozilla/5.0 (Windows NT 10.0 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",5588c6fefdf99b304dd47b0d,6HFVEW46,20:03:06 Tue 01 Sep 15,184.60.227.217
+15,25,Uniform,695506,"Mozilla/5.0 (Windows NT 10.0 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55cf3be134e9060012e56b45,6HFVEW46,20:03:16 Tue 01 Sep 15,71.194.151.35
+16,12,Positive,744986,"Mozilla/5.0 (X11 Linux x86_64 rv:40.0) Gecko/20100101 Firefox/40.0",555930d8fdf99b26ba0a73f4,6HFVEW46,20:03:18 Tue 01 Sep 15,74.192.190.73
+17,15,Positive,736706,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",554a4c37fdf99b744e2ae69f,6HFVEW46,20:03:20 Tue 01 Sep 15,146.200.85.38
+18,10,Uniform,764578,"Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",559be8eefdf99b125289ef17,6HFVEW46,20:03:37 Tue 01 Sep 15,193.165.207.72
+19,7,Uniform,784763,"Mozilla/5.0 (Windows NT 6.1 WOW64 rv:40.0) Gecko/20100101 Firefox/40.0",55896904fdf99b7416027149,6HFVEW46,20:03:45 Tue 01 Sep 15,213.243.187.195
+20,8,Both,877033,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55c8f30cfdf99b78cc9ea578,6HFVEW46,20:05:17 Tue 01 Sep 15,86.40.141.157
+21,30,Positive,700027,"Mozilla/5.0 (Windows NT 6.1 WOW64 rv:40.0) Gecko/20100101 Firefox/40.0",558ad919fdf99b7c4d36e519,6HFVEW46,20:06:20 Tue 01 Sep 15,24.61.172.42
+22,3,Positive,1007818,"Mozilla/5.0 (Windows NT 6.1 WOW64 rv:40.0) Gecko/20100101 Firefox/40.0",55c4e85ffdf99b4adb996553,6HFVEW46,20:07:03 Tue 01 Sep 15,24.135.221.205
+23,18,Positive,1062936,"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",545cb6f1fdf99b119d8b18bc,6HFVEW46,20:09:09 Tue 01 Sep 15,101.98.210.59
+24,22,Uniform,1166900,"Mozilla/5.0 (Windows NT 6.1 rv:40.0) Gecko/20100101 Firefox/40.0",55d0f60334e9060005e5750f,6HFVEW46,20:11:01 Tue 01 Sep 15,92.244.145.143
+25,11,Both,1287606,"Mozilla/5.0 (Windows NT 6.3 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55902406fdf99b3f7aada447,6HFVEW46,20:12:20 Tue 01 Sep 15,24.15.247.117
+26,9,Positive,1314471,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55c28db0fdf99b5e72c6efbc,6HFVEW46,20:12:35 Tue 01 Sep 15,87.112.220.155
+27,31,Uniform,1117978,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55d29e1c5bc5bc0005d90b02,6HFVEW46,20:14:00 Tue 01 Sep 15,72.66.124.150
+28,27,Positive,1387021,"Mozilla/5.0 (Macintosh Intel Mac OS X 10_6_8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55bc9321fdf99b0645225290,6HFVEW46,20:14:53 Tue 01 Sep 15,207.47.182.173
+29,29,Both,1365904,"Mozilla/5.0 (Windows NT 6.3 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55ac4183fdf99b072c0cd448,6HFVEW46,20:15:18 Tue 01 Sep 15,79.97.116.237
+30,21,Positive,1479794,"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55cbb473fdf99b50471ab03a,6HFVEW46,20:16:12 Tue 01 Sep 15,93.87.156.23
+31,33,Positive,866433,"Mozilla/5.0 (Windows NT 6.3 WOW64 rv:43.0) Gecko/20100101 Firefox/43.0",55d048d134e9060005e5709f,6HFVEW46,20:17:14 Tue 01 Sep 15,209.73.137.219
+32,49,Uniform,213942,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",558af771fdf99b7dfef4d800,6HFVEW46,19:36:24 Wed 02 Sep 15,87.115.149.118
+33,34,Uniform,336284,"Mozilla/5.0 (Windows NT 6.1 WOW64 rv:40.0) Gecko/20100101 Firefox/40.0",558afc18fdf99b7dfef4d84e,6HFVEW46,19:36:37 Wed 02 Sep 15,50.152.227.162
+34,54,Positive,333115,"Mozilla/5.0 (Windows NT 6.3 WOW64 rv:40.0) Gecko/20100101 Firefox/40.0",55d4d05258c35800113dc294,6HFVEW46,19:38:55 Wed 02 Sep 15,82.34.1.132
+35,45,Positive,446439,"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55de571604fec500136076a1,6HFVEW46,19:39:40 Wed 02 Sep 15,112.197.142.6
+36,44,Both,511227,"Mozilla/5.0 (Windows NT 5.1 rv:40.0) Gecko/20100101 Firefox/40.0",5596f1f5fdf99b4a8bd2d41a,6HFVEW46,19:40:40 Wed 02 Sep 15,41.140.110.167
+37,39,Positive,548368,"Mozilla/5.0 (Linux Android 4.2.2 GT-I9305 Build/JDQ39E) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.133 Mobile Safari/537.36",55d4f89258c35800103dc40c,6HFVEW46,19:40:46 Wed 02 Sep 15,86.24.246.222
+38,4,Uniform,595418,"Mozilla/5.0 (Macintosh Intel Mac OS X 10_10_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55bb9e77fdf99b2b5b1d5ce1,6HFVEW46,19:40:53 Wed 02 Sep 15,71.231.139.43
+39,51,Positive,475961,"Mozilla/5.0 (Windows NT 10.0 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",558ad687fdf99b65685f0497,6HFVEW46,19:40:55 Wed 02 Sep 15,76.201.81.136
+40,55,Uniform,479128,"Mozilla/5.0 (Windows NT 6.1 WOW64 rv:40.0) Gecko/20100101 Firefox/40.0",55d621bbdb6a810013fa0ea0,6HFVEW46,19:41:50 Wed 02 Sep 15,86.142.105.81
+41,70,Uniform,347008,"Mozilla/5.0 (Windows NT 10.0 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",558e689efdf99b3a5619b591,6HFVEW46,19:41:56 Wed 02 Sep 15,86.5.143.51
+42,64,Uniform,391860,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",5588ec8dfdf99b304dd4824b,6HFVEW46,19:42:00 Wed 02 Sep 15,162.104.71.138
+43,41,Both,619106,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55973b1cfdf99b590e1e9252,6HFVEW46,19:42:11 Wed 02 Sep 15,207.144.189.82
+44,47,Both,597323,"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55e31bf4c70c7a00112a599a,6HFVEW46,19:42:28 Wed 02 Sep 15,75.144.68.229
+45,0,Positive,710492,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55a43211fdf99b02ff6caf7e,6HFVEW46,19:42:34 Wed 02 Sep 15,76.115.209.13
+46,43,Uniform,653740,"Mozilla/5.0 (iPhone CPU iPhone OS 8_4_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12H321 Safari/600.1.4",55b567fbfdf99b4a11df33b9,6HFVEW46,19:43:01 Wed 02 Sep 15,184.151.246.98
+47,58,Uniform,556072,"Mozilla/5.0 (Windows NT 6.3 WOW64 rv:38.0) Gecko/20100101 Firefox/38.0",55d6369cdb6a810013fa0ff8,6HFVEW46,19:43:24 Wed 02 Sep 15,86.2.228.243
+48,53,Both,609378,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",5470e6cbfdf99b433a923452,6HFVEW46,19:43:25 Wed 02 Sep 15,71.197.252.84
+49,48,Positive,645855,"Mozilla/5.0 (Windows NT 10.0 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",550b272afdf99b3946e13443,6HFVEW46,19:43:32 Wed 02 Sep 15,94.173.152.27
+50,56,Both,586000,"Mozilla/5.0 (Windows NT 10.0 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55a432eafdf99b02ff6caf8d,6HFVEW46,19:43:37 Wed 02 Sep 15,86.3.201.220
+51,38,Both,747862,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",559272f4fdf99b7e42e96932,6HFVEW46,19:44:03 Wed 02 Sep 15,92.30.153.231
+52,67,Uniform,512790,"Mozilla/5.0 (Macintosh Intel Mac OS X 10.11 rv:40.0) Gecko/20100101 Firefox/40.0",55bcb0b4fdf99b1068d9754b,6HFVEW46,19:44:07 Wed 02 Sep 15,174.95.2.143
+53,68,Both,508980,"Mozilla/5.0 (Windows NT 10.0 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55d10bc5cc2b1800052be650,6HFVEW46,19:44:12 Wed 02 Sep 15,86.21.52.48
+54,37,Uniform,759391,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",559cc7e3fdf99b66d8b28f88,6HFVEW46,19:44:14 Wed 02 Sep 15,23.127.177.105
+55,71,Both,485508,"Mozilla/5.0 (Windows NT 10.0 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55bd22d0fdf99b374ec0711a,6HFVEW46,19:44:18 Wed 02 Sep 15,108.5.162.108
+56,77,Both,377561,"Mozilla/5.0 (Windows NT 6.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55766633fdf99b31db3db2dc,6HFVEW46,19:44:19 Wed 02 Sep 15,108.176.159.174
+57,60,Positive,587594,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",558ab68afdf99b6567d0081d,6HFVEW46,19:44:27 Wed 02 Sep 15,108.90.121.212
+58,46,Uniform,738820,"Mozilla/5.0 (Windows NT 10.0 WOW64 rv:40.0) Gecko/20100101 Firefox/40.0",5588d532fdf99b304ee567b9,6HFVEW46,19:44:44 Wed 02 Sep 15,74.194.53.126
+59,35,Both,823471,"Mozilla/5.0 (Windows NT 10.0 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55ae3849fdf99b3087df192d,6HFVEW46,19:45:09 Wed 02 Sep 15,68.43.63.181
+60,52,Uniform,720054,"Mozilla/5.0 (Windows NT 10.0 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",55b92f4dfdf99b3ac3e03774,6HFVEW46,19:45:13 Wed 02 Sep 15,85.56.213.89
+61,69,Positive,551513,"Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",559bbbdafdf99b7ce19d5b3d,6HFVEW46,19:45:15 Wed 02 Sep 15,92.238.38.24
+62,82,Uniform,415268,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36",55a5f1e8fdf99b28b5340d01,6HFVEW46,19:45:33 Wed 02 Sep 15,75.13.136.184
+63,73,Uniform,526326,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55a316e7fdf99b246a8ba956,6HFVEW46,19:45:45 Wed 02 Sep 15,65.29.197.179
+64,97,Uniform,239953,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55bec99afdf99b57ba3a0745,6HFVEW46,19:45:46 Wed 02 Sep 15,82.44.66.100
+65,50,Both,774161,"Mozilla/5.0 (Windows NT 6.0 rv:40.0) Gecko/20100101 Firefox/40.0",55b09d60fdf99b12a4b357eb,6HFVEW46,19:45:48 Wed 02 Sep 15,185.15.81.26
+66,92,Both,301753,"Mozilla/5.0 (Windows NT 10.0 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",557002b6fdf99b742ecf8807,6HFVEW46,19:45:54 Wed 02 Sep 15,78.185.141.240
+67,36,Positive,874470,"Mozilla/5.0 (Windows NT 6.1 WOW64 Trident/7.0 SLCC2 .NET CLR 2.0.50727 .NET CLR 3.5.30729 .NET CLR 3.0.30729 Media Center PC 6.0 .NET4.0C .NET4.0E InfoPath.3 NISSC rv:11.0) like Gecko",55d35897da14d700059532ed,6HFVEW46,19:46:09 Wed 02 Sep 15,56.0.143.25
+68,76,Uniform,506361,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55a687e2fdf99b6ca905800e,6HFVEW46,19:46:15 Wed 02 Sep 15,174.62.208.163
+69,79,Uniform,485102,"Mozilla/5.0 (Macintosh Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",5588cc47fdf99b304ee565c9,6HFVEW46,19:46:15 Wed 02 Sep 15,201.167.91.190
+70,72,Positive,584845,"Mozilla/5.0 (Macintosh Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",558a2923fdf99b2d7699ab6d,6HFVEW46,19:46:35 Wed 02 Sep 15,98.246.242.119
+71,66,Positive,668487,"Mozilla/5.0 (Linux Android 5.0.1 HTC One_M8 Build/LRX22C) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Mobile Safari/537.36",55117d8dfdf99b6593ea5236,6HFVEW46,19:46:40 Wed 02 Sep 15,92.232.60.79
+72,57,Positive,784279,"Mozilla/5.0 (Windows NT 6.3 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55d352f4da14d700109533c5,6HFVEW46,19:47:11 Wed 02 Sep 15,92.30.24.190
+73,87,Positive,457251,"Mozilla/5.0 (Windows NT 10.0 WOW64 Trident/7.0 .NET4.0C .NET4.0E .NET CLR 2.0.50727 .NET CLR 3.0.30729 .NET CLR 3.5.30729 rv:11.0) like Gecko",55e696fc41988f001275cd80,6HFVEW46,19:47:19 Wed 02 Sep 15,151.225.69.5
+74,2,Both,1005724,"Mozilla/5.0 (Windows NT 6.1 Win64 x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.78 Safari/537.36",545eb0e5fdf99b7f9fca2548,6HFVEW46,19:47:39 Wed 02 Sep 15,197.237.253.104
+75,40,Uniform,952382,"Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",559faac1fdf99b69f820f0d7,6HFVEW46,19:47:43 Wed 02 Sep 15,175.101.14.236
+76,108,Positive,243899,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",559def9cfdf99b3200d0479c,6HFVEW46,19:48:00 Wed 02 Sep 15,70.190.166.156
+77,88,Uniform,526994,"Mozilla/5.0 (Windows NT 10.0 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55bbb3bdfdf99b2d4f2b8ceb,6HFVEW46,19:48:51 Wed 02 Sep 15,151.228.60.100
+78,86,Both,571615,"Mozilla/5.0 (Windows NT 10.0 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",554d0b4dfdf99b759522e795,6HFVEW46,19:49:09 Wed 02 Sep 15,82.19.139.213
+79,81,Positive,651779,"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",555a3e90fdf99b10ecc8713a,6HFVEW46,19:49:25 Wed 02 Sep 15,176.25.189.179
+80,115,Uniform,233590,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",559347f6fdf99b790feb6435,6HFVEW46,19:49:29 Wed 02 Sep 15,68.3.77.242
+81,63,Positive,846424,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55d4b5e658c35800103dc022,6HFVEW46,19:49:31 Wed 02 Sep 15,164.107.169.133
+82,96,Positive,505968,"Mozilla/5.0 (Windows NT 6.3 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",556e4e83fdf99b6d4a6a1382,6HFVEW46,19:50:05 Wed 02 Sep 15,73.159.126.232
+83,109,Uniform,369068,"Mozilla/5.0 (Windows NT 6.1 WOW64 Trident/7.0 SLCC2 .NET CLR 2.0.50727 .NET CLR 3.5.30729 .NET CLR 3.0.30729 Media Center PC 6.0 .NET4.0C .NET4.0E MS-RTC LM 8 InfoPath.3 rv:11.0) like Gecko",559146cbfdf99b1e5d8ea328,6HFVEW46,19:50:17 Wed 02 Sep 15,158.111.236.185
+84,91,Uniform,574841,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55945cb0fdf99b5f100b3ebb,6HFVEW46,19:50:20 Wed 02 Sep 15,77.97.55.54
+85,75,Positive,759512,"Mozilla/5.0 (Windows NT 6.1 WOW64 rv:39.0) Gecko/20100101 Firefox/39.0",5543e09cfdf99b04c4af5fcb,6HFVEW46,19:50:22 Wed 02 Sep 15,72.208.165.111
+86,74,Both,780935,"Mozilla/5.0 (Windows NT 6.1 WOW64 rv:40.0) Gecko/20100101 Firefox/40.0",55b9b38cfdf99b699f5193bf,6HFVEW46,19:50:23 Wed 02 Sep 15,96.247.122.250
+87,110,Both,384389,"Mozilla/5.0 (Macintosh Intel Mac OS X 10_10_5) AppleWebKit/600.8.9 (KHTML, like Gecko) Version/8.0.8 Safari/600.8.9",55e7408b41988f001275d35f,6HFVEW46,19:50:50 Wed 02 Sep 15,90.196.225.108
+88,85,Uniform,720446,"Mozilla/5.0 (Linux U Android 4.2.2 en-us SM-T110 Build/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30",559c31acfdf99b2189ee8124,6HFVEW46,19:51:14 Wed 02 Sep 15,129.117.14.5
+89,111,Positive,407216,"Mozilla/5.0 (Windows NT 6.3 WOW64 rv:40.0) Gecko/20100101 Firefox/40.0",555910d1fdf99b15c6112eb7,6HFVEW46,19:51:22 Wed 02 Sep 15,209.197.20.241
+90,65,Both,957934,"Mozilla/5.0 (Windows NT 10.0 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",5559ece3fdf99b6bb084b07e,6HFVEW46,19:51:26 Wed 02 Sep 15,90.218.102.83
+91,124,Uniform,240711,"Mozilla/5.0 (Windows NT 6.1 Win64 x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2498.0 Safari/537.36",55e6b59641988f001075cb68,6HFVEW46,19:51:30 Wed 02 Sep 15,43.226.27.77
+92,112,Uniform,417212,"Mozilla/5.0 (Windows NT 6.3 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55a06b7afdf99b26ce7c5582,6HFVEW46,19:51:41 Wed 02 Sep 15,107.5.78.230
+93,61,Uniform,994831,"Mozilla/5.0 (iPad CPU OS 8_4 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12H143 Safari/600.1.4",55ad5706fdf99b649ca5a47c,6HFVEW46,19:51:54 Wed 02 Sep 15,94.173.108.110
+94,102,Positive,538272,"Mozilla/5.0 (Windows NT 10.0 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",5542ab3ffdf99b0768bb7090,6HFVEW46,19:51:59 Wed 02 Sep 15,81.100.245.157
+95,80,Both,822410,"Mozilla/5.0 (Windows NT 6.1 WOW64 rv:40.0) Gecko/20100101 Firefox/40.0",55aeaeb3fdf99b5c769f1f7c,6HFVEW46,19:52:13 Wed 02 Sep 15,198.176.80.33
+96,90,Positive,716091,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55cf7e8b34e906000ee56498,6HFVEW46,19:52:30 Wed 02 Sep 15,146.200.96.80
+97,94,Uniform,662554,"Mozilla/5.0 (Windows NT 10.0 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",5588d01bfdf99b304dd47ced,6HFVEW46,19:52:38 Wed 02 Sep 15,74.4.181.87
+98,95,Both,689232,"Mozilla/5.0 (Windows NT 6.2 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",55e3598dc70c7a00112a5b10,6HFVEW46,19:53:06 Wed 02 Sep 15,142.197.199.3
+99,98,Both,675203,"Mozilla/5.0 (Macintosh Intel Mac OS X 10.10 rv:40.0) Gecko/20100101 Firefox/40.0",5589541bfdf99b6bd0601674,6HFVEW46,19:53:06 Wed 02 Sep 15,68.119.204.235
+100,101,Both,640810,"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55d4c54558c35800103dc0d7,6HFVEW46,19:53:13 Wed 02 Sep 15,184.177.1.137
+101,130,Uniform,264071,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.130 Safari/537.36",545ccd3efdf99b75ad2e325c,6HFVEW46,19:53:21 Wed 02 Sep 15,198.103.161.1
+102,106,Uniform,582469,"Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55aa47b2fdf99b4b4b778f03,6HFVEW46,19:53:28 Wed 02 Sep 15,88.104.247.100
+103,105,Positive,621805,"Mozilla/5.0 (Windows NT 6.1 Win64 x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",559369a7fdf99b78e49c58a8,6HFVEW46,19:53:36 Wed 02 Sep 15,119.74.228.16
+104,136,Uniform,315821,"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55b3e07cfdf99b35900c2340,6HFVEW46,19:54:49 Wed 02 Sep 15,89.180.104.180
+105,122,Both,453578,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",559d5870fdf99b13ca1d81fe,6HFVEW46,19:54:57 Wed 02 Sep 15,94.139.219.247
+106,100,Uniform,770589,"Mozilla/5.0 (Windows NT 6.3 WOW64 rv:38.0) Gecko/20100101 Firefox/38.0",54ab0771fdf99b55c3f55227,6HFVEW46,19:55:13 Wed 02 Sep 15,86.171.198.166
+107,104,Both,726945,"Mozilla/5.0 (Windows NT 6.1 WOW64 rv:40.0) Gecko/20100101 Firefox/40.0",558d8d71fdf99b534f79b352,6HFVEW46,19:55:17 Wed 02 Sep 15,76.202.221.113
+108,117,Positive,569366,"Mozilla/5.0 (iPhone CPU iPhone OS 8_4 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12H143 Safari/600.1.4",55c4fc3dfdf99b559867a416,6HFVEW46,19:55:28 Wed 02 Sep 15,166.175.191.237
+109,146,Both,292881,"Mozilla/5.0 (X11 Linux x86_64 rv:34.0) Gecko/20100101 Firefox/34.0",55e35f57c70c7a00052a58,6HFVEW46,19:55:42 Wed 02 Sep 15,74.80.210.169
+110,141,Positive,345624,"Mozilla/5.0 (Windows NT 6.1 WOW64 rv:40.0) Gecko/20100101 Firefox/40.0",55af9877fdf99b2847046166,6HFVEW46,19:56:10 Wed 02 Sep 15,129.93.83.44
+111,83,Both,1063773,"Mozilla/5.0 (Windows NT 10.0 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55e36dd4c70c7a00112a5bce,6HFVEW46,19:56:27 Wed 02 Sep 15,89.101.93.69
+112,116,Both,637003,"Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55d4c3b358c35800113dc120,6HFVEW46,19:56:34 Wed 02 Sep 15,86.14.117.156
+113,126,Positive,489445,"Mozilla/5.0 (Windows NT 10.0 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",555e1e71fdf99b1d468532ee,6HFVEW46,19:56:42 Wed 02 Sep 15,142.157.68.248
+114,125,Both,507328,"Mozilla/5.0 (Windows NT 6.3 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55a432fcfdf99b02ff6caf92,6HFVEW46,19:56:43 Wed 02 Sep 15,50.136.28.73
+115,155,Both,279914,"Mozilla/5.0 (Windows NT 6.1 WOW64 rv:40.0) Gecko/20100101 Firefox/40.0",55b16fcbfdf99b5daa0945c9,6HFVEW46,19:56:52 Wed 02 Sep 15,78.56.37.38
+116,119,Both,610730,"Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",55cbece4fe33040005625438,6HFVEW46,19:56:55 Wed 02 Sep 15,5.101.142.236
+117,118,Uniform,695195,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",559d75befdf99b1e2b2dc522,6HFVEW46,19:57:13 Wed 02 Sep 15,217.44.139.239
+118,120,Positive,641687,"Mozilla/5.0 (Linux U Android 4.3 en-gb GT-I9300 Build/JSS15J) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30",5599dbe6fdf99b4a3c5bc628,6HFVEW46,19:57:28 Wed 02 Sep 15,86.128.103.151
+119,139,Uniform,464240,"Mozilla/5.0 (Windows NT 10.0 Win64 x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240",55a6200efdf99b427bda5f58,6HFVEW46,19:57:36 Wed 02 Sep 15,86.136.37.173
+120,107,Both,818474,"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55a1064efdf99b3f453c5e88,6HFVEW46,19:57:45 Wed 02 Sep 15,12.77.136.213
+121,129,Positive,568236,"Mozilla/5.0 (Windows NT 6.3 WOW64 rv:40.0) Gecko/20100101 Firefox/40.0",558c415afdf99b75ca0c2596,6HFVEW46,19:58:24 Wed 02 Sep 15,68.60.208.162
+122,159,Positive,365628,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",556df1cefdf99b53770d2589,6HFVEW46,19:58:33 Wed 02 Sep 15,167.206.233.247
+123,151,Uniform,433153,"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55c25d02fdf99b4e1d73d6a1,6HFVEW46,19:59:04 Wed 02 Sep 15,59.183.3.195
+124,84,Positive,1203156,"Mozilla/5.0 (Windows NT 6.3 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55ac3198fdf99b6de3b68b23,6HFVEW46,19:59:15 Wed 02 Sep 15,86.9.70.35
+125,145,Uniform,510951,"Mozilla/5.0 (Windows NT 6.1 WOW64 rv:40.0) Gecko/20100101 Firefox/40.0",55885ea2fdf99b40219220c0,6HFVEW46,19:59:17 Wed 02 Sep 15,66.119.2.3
+126,173,Both,210343,"Mozilla/5.0 (Windows NT 6.3 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55d2340f5bc5bc0012d902ae,6HFVEW46,19:59:25 Wed 02 Sep 15,97.119.21.95
+127,78,Positive,1301921,"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55ca03e1fdf99b2735fc1dde,6HFVEW46,19:59:44 Wed 02 Sep 15,129.252.70.108
+128,121,Uniform,798410,"Mozilla/5.0 (Mobile Windows Phone 8.1 Android 4.0 ARM Trident/7.0 Touch rv:11.0 IEMobile/11.0 NOKIA Lumia 625) like iPhone OS 7_0_3 Mac OS X AppleWebKit/537 (KHTML, like Gecko) Mobile Safari/537",559c3e04fdf99b32b55f2d8a,6HFVEW46,20:00:21 Wed 02 Sep 15,85.255.232.210
+129,133,Uniform,681126,"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",55ad44fbfdf99b5656546995,6HFVEW46,20:00:36 Wed 02 Sep 15,72.128.72.95
+130,167,Both,336459,"Mozilla/5.0 (X11 CrOS x86_64 7077.134.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.156 Safari/537.36",55bd713cfdf99b4c1b12565d,6HFVEW46,20:00:39 Wed 02 Sep 15,173.25.168.174
+131,132,Positive,705555,"Mozilla/5.0 (Windows NT 6.3 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55cb97a5fdf99b45b781b1ba,6HFVEW46,20:00:51 Wed 02 Sep 15,93.139.75.16
+132,158,Both,515701,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",54230df2fdf99b328baf8e89,6HFVEW46,20:01:02 Wed 02 Sep 15,80.44.118.96
+133,143,Both,738247,"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",559e2814fdf99b4f0b984ec5,6HFVEW46,20:01:58 Wed 02 Sep 15,188.246.36.245
+134,164,Both,479773,"Mozilla/5.0 (Macintosh Intel Mac OS X 10_10_5) AppleWebKit/600.8.9 (KHTML, like Gecko) Version/8.0.8 Safari/600.8.9",55ca0172fdf99b2643ecb5b8,6HFVEW46,20:01:59 Wed 02 Sep 15,86.150.187.140
+135,135,Positive,760194,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55896c2bfdf99b74160272a1,6HFVEW46,20:02:08 Wed 02 Sep 15,91.184.212.177
+136,131,Both,798902,"Mozilla/5.0 (Windows NT 10.0 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55b19791fdf99b68190ce589,6HFVEW46,20:02:18 Wed 02 Sep 15,70.145.223.147
+137,154,Uniform,630407,"Mozilla/5.0 (Macintosh Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",558d326efdf99b495c3dd459,6HFVEW46,20:02:30 Wed 02 Sep 15,82.43.63.238
+138,150,Positive,655045,"Mozilla/5.0 (Windows NT 10.0 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55b15188fdf99b4f9231de0e,6HFVEW46,20:02:42 Wed 02 Sep 15,99.46.142.20
+139,140,Both,760046,"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",545cc8a6fdf99b75c2904886,6HFVEW46,20:02:42 Wed 02 Sep 15,43.230.184.99
+140,184,Uniform,311902,"Mozilla/5.0 (Windows NT 6.3 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55ca5305fdf99b498b73f29c,6HFVEW46,20:02:43 Wed 02 Sep 15,150.135.211.242
+141,163,Uniform,574263,"Mozilla/5.0 (Windows NT 10.0 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55e6f92941988f000575d02a,6HFVEW46,20:03:20 Wed 02 Sep 15,63.155.255.226
+142,171,Positive,478099,"Mozilla/5.0 (Windows NT 6.1 WOW64 Trident/7.0 SLCC2 .NET CLR 2.0.50727 .NET CLR 3.5.30729 .NET CLR 3.0.30729 .NET4.0C .NET4.0E InfoPath.3 Media Center PC 6.0 rv:11.0) like Gecko",55d1f9afcc2b18000c0b9ce6,6HFVEW46,20:03:20 Wed 02 Sep 15,81.108.56.191
+143,149,Both,707855,"Mozilla/5.0 (Windows NT 6.3 WOW64 Trident/7.0 Touch .NET4.0E .NET4.0C Tablet PC 2.0 .NET CLR 3.5.30729 .NET CLR 2.0.50727 .NET CLR 3.0.30729 McAfee GWX:QUALIFIED LCJB rv:11.0) like Gecko",55917815fdf99b4fdf6153,6HFVEW46,20:03:27 Wed 02 Sep 15,146.198.103.39
+144,113,Both,1111060,"Mozilla/5.0 (Windows NT 6.1 Win64 x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36",55e04def3b268b000502935e,6HFVEW46,20:03:40 Wed 02 Sep 15,125.21.194.2
+145,160,Uniform,740480,"Mozilla/5.0 (Windows NT 6.1 WOW64 rv:40.0) Gecko/20100101 Firefox/40.0",559e664dfdf99b4f28173b05,6HFVEW46,20:04:51 Wed 02 Sep 15,98.230.32.128
+146,161,Both,735350,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55a90fcbfdf99b6295f4eace,6HFVEW46,20:05:03 Wed 02 Sep 15,196.46.252.78
+147,181,Uniform,470461,"Mozilla/5.0 (Windows NT 10.0 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",5589a9d1fdf99b118adfa3a6,6HFVEW46,20:05:04 Wed 02 Sep 15,97.84.173.192
+148,175,Uniform,537078,"Mozilla/5.0 (X11 CrOS x86_64 7077.134.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.156 Safari/537.36",558a0eedfdf99b2d7565144f,6HFVEW46,20:05:07 Wed 02 Sep 15,74.72.128.92
+149,178,Uniform,502907,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55a47692fdf99b126e625257,6HFVEW46,20:05:26 Wed 02 Sep 15,108.129.125.17
+150,172,Uniform,578730,"Mozilla/5.0 (Windows NT 6.3 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",558ad38efdf99b65685f0447,6HFVEW46,20:05:31 Wed 02 Sep 15,2.125.206.155
+151,128,Both,999480,"Mozilla/5.0 (Windows NT 6.1 WOW64 rv:31.0) Gecko/20100101 Firefox/31.0",5514f977fdf99b5587d2864f,6HFVEW46,20:05:33 Wed 02 Sep 15,49.128.160.54
+152,169,Uniform,622010,"Mozilla/5.0 (iPhone CPU iPhone OS 8_4_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12H321 Safari/600.1.4",55e5b679c70c7a000a2a58f2,6HFVEW46,20:05:34 Wed 02 Sep 15,86.168.187.211
+153,99,Positive,1415440,"Mozilla/5.0 (Windows NT 6.1 WOW64 rv:40.0) Gecko/20100101 Firefox/40.0",55896edcfdf99b741602730d,6HFVEW46,20:05:35 Wed 02 Sep 15,86.155.18.101
+154,166,Uniform,654383,"Mozilla/5.0 (Windows NT 6.3 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36 OPR/31.0.1889.174",55ad7888fdf99b6eff50171d,6HFVEW46,20:05:36 Wed 02 Sep 15,174.53.84.103
+155,185,Both,450695,"Mozilla/5.0 (Macintosh Intel Mac OS X 10.8 rv:40.0) Gecko/20100101 Firefox/40.0",559afb47fdf99b361ac46897,6HFVEW46,20:05:41 Wed 02 Sep 15,146.199.177.71
+156,148,Uniform,848824,"Mozilla/5.0 (Macintosh Intel Mac OS X 10_10_5) AppleWebKit/600.8.9 (KHTML, like Gecko) Version/8.0.8 Safari/600.8.9",5397a57bfdf99b1ccc3f1214,6HFVEW46,20:05:47 Wed 02 Sep 15,104.34.53.179
+157,157,Uniform,817243,"Mozilla/5.0 (Windows NT 10.0 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",540a3109fdf99b6d5ccf0931,6HFVEW46,20:06:03 Wed 02 Sep 15,81.141.99.28
+158,89,Both,1556830,"Mozilla/5.0 (Windows NT 10.0 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",5594ad01fdf99b5f100b3fbd,6HFVEW46,20:06:14 Wed 02 Sep 15,98.30.38.28
+159,152,Both,858798,"Mozilla/5.0 (X11 CrOS x86_64 7077.134.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.156 Safari/537.36",555a9472fdf99b471511855f,6HFVEW46,20:06:17 Wed 02 Sep 15,72.202.199.29
+160,180,Positive,548996,"Mozilla/5.0 (Windows NT 10.0 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",546e2f3cfdf99b2bc7ebcfe5,6HFVEW46,20:06:18 Wed 02 Sep 15,184.1.212.3
+161,147,Positive,901125,"Mozilla/5.0 (Linux Android 5.1.1 Nexus 5 Build/LMY47V) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.133 Mobile Safari/537.36",55c9f547fdf99b1c14741323,6HFVEW46,20:06:23 Wed 02 Sep 15,186.166.250.198
+162,188,Both,133504,"Mozilla/5.0 (Windows NT 6.1 Win64 x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36",5554c0a1fdf99b6c259408e6,6HFVEW46,20:07:01 Wed 02 Sep 15,125.21.194.2
+163,170,Both,704874,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55d0e4d334e9060005e574c7,6HFVEW46,20:07:02 Wed 02 Sep 15,82.47.19.233
+164,144,Positive,978037,"Mozilla/5.0 (Windows NT 10.0 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",558a9550fdf99b5796584edf,6HFVEW46,20:07:06 Wed 02 Sep 15,197.87.214.5
+165,174,Positive,714070,"Mozilla/5.0 (Windows NT 10.0 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55973e99fdf99b5dfc68c8ac,6HFVEW46,20:07:56 Wed 02 Sep 15,24.76.234.63
+166,183,Positive,640135,"Mozilla/5.0 (Windows NT 6.3 WOW64 rv:40.0) Gecko/20100101 Firefox/40.0",55b1c05ffdf99b68190ce691,6HFVEW46,20:08:08 Wed 02 Sep 15,73.35.119.118
+167,182,Both,654523,"Mozilla/5.0 (Windows NT 6.3 WOW64 rv:40.0) Gecko/20100101 Firefox/40.0",55a145fcfdf99b6ec83c2470,6HFVEW46,20:08:13 Wed 02 Sep 15,86.150.173.140
+168,179,Both,673712,"Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",555247e6fdf99b0c18cd1d0c,6HFVEW46,20:08:19 Wed 02 Sep 15,67.82.196.15
+169,153,Positive,1075268,"Mozilla/5.0 (Windows NT 6.3 WOW64 rv:40.0) Gecko/20100101 Firefox/40.0",55a3f881fdf99b6e3e618245,6HFVEW46,20:09:55 Wed 02 Sep 15,75.161.38.132
+170,162,Positive,1070852,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",558c7ce3fdf99b75ca0c2776,6HFVEW46,20:10:47 Wed 02 Sep 15,24.158.237.83
+171,168,Positive,991893,"Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55888ac0fdf99b5a48cf2e79,6HFVEW46,20:11:40 Wed 02 Sep 15,24.85.115.44
+172,165,Positive,1071681,"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36",55650260fdf99b76e760cd77,6HFVEW46,20:11:55 Wed 02 Sep 15,137.99.124.196
+173,177,Positive,939096,"Mozilla/5.0 (Windows NT 10.0 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",558a144ffdf99b2d756514bb,6HFVEW46,20:12:32 Wed 02 Sep 15,76.94.123.89
+174,187,Uniform,580669,"Mozilla/5.0 (Windows NT 6.3 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",545cd16cfdf99b75c2904898,6HFVEW46,20:14:10 Wed 02 Sep 15,131.151.252.152
+175,176,Both,1129283,"Mozilla/5.0 (Windows NT 6.3 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",55ca229afdf99b3466605951,6HFVEW46,20:15:28 Wed 02 Sep 15,70.193.102.248
+176,186,Positive,1666320,"Mozilla/5.0 (Windows NT 10.0 Win64 x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.78 Safari/537.36",5588e9fbfdf99b304dd481f8,6HFVEW46,20:26:26 Wed 02 Sep 15,75.158.26.128
+177,42,Positive,949467,"Mozilla/5.0 (Windows NT 10.0 WOW64 rv:40.0) Gecko/20100101 Firefox/40.0",55ad97ccfdf99b740305202f,6HFVEW46,21:11:09 Wed 02 Sep 15,96.59.167.21

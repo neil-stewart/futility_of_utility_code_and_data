@@ -1,0 +1,198 @@
+---
+title: 'Futility of Utility Modelling'
+author: Neil Stewart
+#date: '`r format(Sys.time(), "%d %B %Y")`'
+bibliography: refs.bib
+#csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
+output: 
+   html_document:
+    toc: true
+    toc_depth: 3 
+---
+
+---
+
+```{r setup, echo=FALSE}
+library(data.table)
+library(ggplot2)
+library(boot)
+```
+
+# Read in data
+
+$px$ is the risky choice
+
+
+
+```{r Load data and delete columns}
+load("cleaned_data.RData")
+
+data <- as.data.table(data)
+
+data[, left.prob:=NULL]
+data[, left.amount:=NULL]
+data[, right.prob:=NULL]
+data[, right.amount:=NULL]
+data[, button:=NULL]
+data[, RT:=NULL]
+data[, location:=NULL]
+data[, risky.choice:=NULL]
+data[, prev.button:=NULL]
+data[, alternation:=NULL]
+data[, condition:=NULL] # It matched cond
+data[, sub.no:=NULL] # We still have sub.id
+data[, PA.id:=NULL]
+data[, choice:=NULL] # We still have safe.choice dummy
+
+str(data)
+```
+
+
+```{r Identify choice sets}
+# Make sure we are working with integers for amounts
+str(  positive.amounts <- as.integer(c(10, 20, 50, 100, 200, 500))  )
+str(  uniform.amounts <- as.integer(c(100, 200, 300, 400, 500))  )
+
+data[, choice.set.positive:= ifelse((x %in% positive.amounts) & (y %in% positive.amounts), 1L, 0L)]
+data[, choice.set.uniform:= ifelse((x %in% uniform.amounts) & (y %in% uniform.amounts), 1L, 0L)]
+
+data[cond=="Both" &  choice.set.positive &  choice.set.uniform, choice.set:="Common"]
+data[cond=="Both" & !choice.set.positive & !choice.set.uniform, choice.set:="Unique"]
+data[cond=="Both" & !choice.set.positive &  choice.set.uniform, choice.set:="Uniform"]
+data[cond=="Both" &  choice.set.positive & !choice.set.uniform, choice.set:="Positive"]
+```
+
+
+```{r}
+# 89 people in the Both Condition
+unique(data[,.(sub.id, cond)])[,.N,by=.(cond)]
+
+# 140 choices in the Both Condition; 150 in Positive and Uniform Conditions
+unique(data[,.N, by=.(sub.id, cond)][order(cond),][,.(cond, N)])
+```
+
+# Simple plot 
+
+```{r}
+log.odds <- function(p) { log(p/(1 - p)) }
+
+#log.odds(0.01+0.98*safe.choice)
+
+log.odds.safe <- data[cond=="Both", .(prop.safe.choice=mean(safe.choice)), by=.(log.y.over.x=log(y/x), choice.set, y, x)][order(log.y.over.x, choice.set),]
+log.odds.safe[, log.odds.safe.choice:=log.odds(prop.safe.choice)]
+
+
+retro.split <- rbind(
+ 	log.odds.safe[choice.set %in% c("Positive", "Common"),][,choice.subset:="Positive"],
+ 	log.odds.safe[choice.set %in% c("Uniform", "Common"),][,choice.subset:="Uniform"]
+)
+
+labels <- data.frame(x=c(-2.5, -0.78), y=c(0.13, 1.36), label=c("alpha==0.62 95\\% CI[0.54-0.70]", "alpha=0.94 95\\% CI[0.78-1.10]"))
+
+labels <- data.frame(x=c(-3.2, -0.8), y=c(0.1, -0.6), label=c('atop(alpha[Positive]==0.62*",",95*"%"~CI~bgroup("[",0.54-"0.70","]"))', 'atop(alpha[Uniform]==0.94*",",95*"%"~CI~bgroup("[",0.78-"1.10","]"))'), choice.subset=c("Positive", "Uniform"))
+
+x.axis.labels <- rbind(CJ(y=positive.amounts, x=positive.amounts), CJ(y=uniform.amounts, x=uniform.amounts))
+x.axis.labels <- x.axis.labels[y<x,]
+x.axis.labels <- unique(x.axis.labels)
+x.axis.labels[,log.y.over.x:=log(y/x)]
+x.axis.labels[,label:=paste("log(",y,"/",x,")",sep="")]
+x.axis.labels <- aggregate(label ~ log.y.over.x, FUN=paste, data=x.axis.labels, collapse="\n")
+
+
+
+ggplot(retro.split, aes(x=log.y.over.x, y=log.odds.safe.choice, col=choice.subset, shape=choice.subset)) + geom_point(size=2) + geom_smooth(method="lm", se=FALSE) + labs(col="Choice Set", shape="Choice Set", x=expression(log(y/x))) + geom_text(data=labels, mapping=aes(x=x, y=y, label=label,col=choice.subset, shape=NULL), parse=TRUE, show.legend=FALSE) + ylab(expression(log*bgroup("[",over(P(Safe),1-P(Safe)),"]"))) + scale_x_continuous(breaks=x.axis.labels$log.y.over.x, labels=x.axis.labels$label) + theme_classic() + theme(axis.text.x=element_text(angle=90, hjust=0, vjust=0.5)) + scale_color_brewer(palette="Dark2")
+
+ggsave("log_odds_safe_by_log_y_over_x.pdf", width=9, height=6)#, scale=0.5)
+```
+
+# Run logistic regressions
+
+```{r}
+
+fit.power.model <-function(data) {
+	m <- glm(safe.choice ~ log(y/x) + log(q/p), family=binomial, data=data)
+	# summary(m.positive)
+
+	beta <- coef(m)
+	bias <- unname(exp(beta["(Intercept)"]))
+	gamma <- unname(beta["log(q/p)"])
+	gamma.alpha <-  unname(beta["log(y/x)"])
+	alpha <- gamma.alpha / gamma
+	#v <- ((0:500)/500)^alpha
+	#list(par=c(bias=bias, gamma=gamma, alpha=alpha), lnL=logLik(m))
+	list(bias=bias, gamma=gamma, alpha=alpha, lnL=logLik(m))
+	#data.frame(subset=name, name=c("bias", "gamma", "alpha", #0:500, 
+	#	"logLik"), value=c(bias, gamma, alpha, #v,
+	#	logLik(m)))
+}
+
+# Ordering important for bootstrapping later on
+data.both.positive <- data[cond=="Both" & choice.set %in% c("Common", "Positive")][order(sub.id),]
+data.both.positive[,sub.id:=droplevels(sub.id)]
+data.both.uniform  <- data[cond=="Both" & choice.set %in% c("Common", "Uniform")][order(sub.id),]
+data.both.uniform[,sub.id:=droplevels(sub.id)][order(sub.id),]
+
+(  fit.positive   <- fit.power.model(data.both.positive)  )
+(  fit.uniform <- fit.power.model(data.both.uniform)  )
+```
+
+## Bootstrap $\alpha$
+
+```{r}
+# Check 140 trials for everyone
+(  no.trials <- data[cond=="Both",.(no.trials=.N),by=.(sub.id)][,unique(no.trials)]  )
+
+# data.table of only subjects
+subjects <- data[cond=="Both", .(sub.id=droplevels(unique(sub.id)))]
+
+
+wrapper <- function(subjects, indices, per.trial.data) {
+	s <- subjects[indices,]
+	# CJ(sub.id=s[,sub.id], trial=1:no.trials) has one row per subject per trial with sub.id and trial columns. Merging it with per.trial.data 
+	d <- merge(CJ(sub.id=s[,sub.id], trial=(1:no.trials)-1), per.trial.data)
+	#print(d[,.N,by=.(sub.id)])
+	f <- fit.power.model(d)
+	#print(f$par)
+	c(f$bias, f$gamma, f$alpha)
+}
+
+boot.ci.wrapper <- function(i, boot.result) {
+	boot.ci(boot.result, index=i, type="norm")$norm[2:3]
+}
+
+# Positive bootstrap
+boot.positive.result <- boot(data=subjects, statistic=wrapper, R=1001, per.trial.data=data.both.positive, parallel="multicore", ncpus=23)
+
+CIs.both.positive <- t(sapply(1:length(boot.positive.result$t0), FUN=boot.ci.wrapper, boot.result=boot.positive.result))
+colnames(CIs.both.positive) <- c("lower", "upper")
+
+both.positive.point.estimates <- wrapper(data.both.positive, 1:nrow(data.both.positive), per.trial.data=data.both.positive)
+both.positive.parameters <- as.data.table(cbind(estimate=both.positive.point.estimates, CIs.both.positive))
+both.positive.parameters
+
+# Uniform bootstrap
+boot.uniform.result <- boot(data=subjects, statistic=wrapper, R=1001, per.trial.data=data.both.uniform, parallel="multicore", ncpus=23)
+
+CIs.both.uniform <- t(sapply(1:length(boot.uniform.result$t0), FUN=boot.ci.wrapper, boot.result=boot.uniform.result))
+colnames(CIs.both.uniform) <- c("lower", "upper")
+
+both.uniform.point.estimates <- wrapper(data.both.uniform, 1:nrow(data.both.uniform), per.trial.data=data.both.uniform)
+both.uniform.parameters <- as.data.table(cbind(estimate=both.uniform.point.estimates, CIs.both.uniform))
+both.uniform.parameters
+```
+
+
+# `ggplot()` of non-parametric fits
+
+Bootstrapped based on individual `glm()` fits
+
+```{r}
+glm.nonpara.fit <- fread("glm_nonpara_individual_bootstrap_both_data_points.csv")
+
+ggplot(glm.nonpara.fit, aes(x=x, y=estimate, col=subset, shape=subset, ymin=lower.CI, ymax=upper.CI)) + geom_line() + geom_linerange() + geom_point(size=3) + labs(x="Amount / £", y="Utility", col="Choice Subset", shape="Choice Subset") + theme_classic() + scale_color_brewer(palette = "Dark2") # + geom_line(data=power.functions.data, aes(x=x, y=utility, ymin=NULL, ymax=NULL, col=subset)) 
+
+ggsave("glm_nonpara_individual_bootstrap_both.pdf", width=6, height=4)#, scale=0.5)
+
+```
+
+

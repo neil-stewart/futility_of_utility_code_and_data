@@ -1,0 +1,163 @@
+---
+title: 'Futility of Utility Modelling'
+author: Neil Stewart
+#date: '`r format(Sys.time(), "%d %B %Y")`'
+bibliography: refs.bib
+#csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
+output: 
+   html_document:
+    toc: true
+    toc_depth: 3 
+---
+
+---
+
+```{r setup, echo=FALSE}
+library(data.table)
+#library(ggplot2)
+#library(gridExtra)
+
+library(lattice)
+library(latticeExtra)
+library(gtools)
+#library(Rmisc)
+#library(lme4)
+#library(boot)
+#library(MuMIn)
+#library(reshape2)
+#library(data.table)
+#library(lsmeans)
+#source("xyplot_error_bars.R")
+
+#theme_set(theme_classic())
+```
+
+# Read in data
+
+$px$ is the riskier gamble.
+
+```{r}
+trials.4a <- read.csv("trials_4a.csv", as.is=TRUE)
+trials.4a$sub.id <- paste("PA", trials.4a$sub.id, sep="")
+trials.4a$population <- "PA"
+trials.4b <- read.csv("trials_4b.csv", as.is=TRUE)
+trials.4b$sub.id <- paste("MTurk", trials.4b$sub.id, sep="")
+trials.4b$population <- "MTurk"
+trials <- rbind(trials.4a, trials.4b)
+rm(trials.4a, trials.4b)
+trials$population <- as.factor(trials$population)
+trials$condition <- factor(trials$cond, levels=c("Positive", "Uniform", "Both"))
+trials$sub.id <- factor(trials$sub.id, levels=mixedsort(unique(trials$sub.id)))
+
+
+demographics.4a <- read.csv("demographics_4a.csv", as.is=TRUE)
+demographics.4a$sub.id <- paste("PA", demographics.4a$sub.id, sep="")
+demographics.4a$population <- "PA"
+demographics.4b <- read.csv("demographics_4b.csv", as.is=TRUE)
+demographics.4b$sub.id <- paste("MTurk", demographics.4b$sub.id, sep="")
+demographics.4b$population <- "MTurk"
+demographics <- rbind(demographics.4a, demographics.4b)
+rm(demographics.4a, demographics.4b)
+demographics$population <- as.factor(demographics$population)
+demographics$condition <- factor(demographics$cond, levels=c("Positive", "Uniform", "Both"))
+demographics$sub.id <- factor(demographics$sub.id, levels=mixedsort(unique(demographics$sub.id)))
+demographics$experiment.duration <- demographics$experiment.duration/1000/60 # to get to minutes from ms
+demographics$time <- as.POSIXct(demographics$time, format="%T %a %d %b %y")
+
+# For the MTurk experiment, stud was incorrectly run in £ until Wednesday 2 September 2015 when it was switched to $
+
+choices <- read.csv("choices.csv", as.is=TRUE)
+choices$condition <- factor(choices$cond, levels=c("Positive", "Uniform", "Both"))
+# px is a risky choice
+all(choices$p < choices$q)
+all(choices$x > choices$y)
+names(choices)[names(choices)=="id"] <- "trial.id"
+```
+
+# Duration
+
+75\% of people completed in fewer than 13 minutes.
+90\% of people completed in fewer than 17 minutes.
+
+```{r}
+densityplot(~experiment.duration | population, groups=cond, data=subset(demographics, experiment.duration<30), auto.key=TRUE, layout=c(1,2), as.table=TRUE, scales=list(alternating=FALSE), type="g")
+quantile(demographics$experiment.duration, na.rm=TRUE, probs=c(.25,.5,.75,.9))
+
+x <- as.data.table(demographics)
+(  cutoff.durations <- as.data.frame(x[,.(duration.5=quantile(experiment.duration, probs=c(.05)), duration.95=quantile(experiment.duration, probs=c(.95))),by=list(condition,population)])  )
+demographics <- merge(cutoff.durations, demographics)
+
+demographics$outlier <- demographics$experiment.duration < demographics$duration.5 | demographics$experiment.duration > demographics$duration.95
+
+xyplot(experiment.duration~condition | population, groups=outlier, data=demographics, jitter.x=TRUE, layout=c(2,1), as.table=TRUE, scales=list(alternating=FALSE), type=c("p", "g")) 
+
+(  duration.outliers <- demographics$sub.id[demographics$outlier]  )
+```
+
+# IP Duplicates
+
+```{r}
+duplicates <- function(x, set) {sum(x == set[!is.na(set)])-1}
+demographics$duplicate <- sapply(demographics$ip, duplicates, set=demographics$ip)
+(  ip.duplicates <- demographics$sub.id[demographics$duplicate!=0]  )
+```
+
+# Uncounterbalance px qy left right
+```{r}
+# Work out counterbalancing of trials
+trials$location <- ifelse(trials$p < trials$q, "Risky Left", "Risky Right")
+trials$choice <- ifelse((trials$location=="Risky Left" & trials$button=="left") | (trials$location=="Risky Right" & trials$button=="right"), "Risky", "Safe")
+trials$risky.choice <- ifelse(trials$choice=="Risky", 1 ,0)
+trials$safe.choice <- 1 - trials$risky.choice
+
+# Rename p,q,x,y with location based names, and then use p,q,x,y for risky and safe
+names(trials)[names(trials)=="p"] <- "left.prob"
+names(trials)[names(trials)=="q"] <- "right.prob"
+names(trials)[names(trials)=="x"] <- "left.amount"
+names(trials)[names(trials)=="y"] <- "right.amount"
+trials$p <- ifelse(trials$location=="Risky Left", trials$left.prob, trials$right.prob)
+trials$q <- ifelse(trials$location=="Risky Left", trials$right.prob, trials$left.prob)
+trials$x <- ifelse(trials$location=="Risky Left", trials$left.amount, trials$right.amount)
+trials$y <- ifelse(trials$location=="Risky Left", trials$right.amount, trials$left.amount)
+trials <- merge(trials, choices)
+```
+
+# Alternation Outliers
+
+```{r}
+trials <- trials[with(trials, order(sub.id, trial)),]
+trials$prev.button <- c(NA, trials$button[-nrow(trials)])
+trials$prev.button[trials$trial==0] <- NA
+trials$alternation <- ifelse(trials$button == trials$prev.button, 0, 1)
+alternations <- aggregate(alternation~sub.id + condition, data=trials, FUN=mean)
+i <- order(alternations$alternation)
+alternations <- alternations[order(alternations$alternation),]
+head(alternations)
+tail(alternations)
+alternation.cuts <- quantile(alternations$alternation, probs=c(.05, .95))
+densityplot(~alternation, groups=condition, data=alternations, auto.key=TRUE) + layer(panel.abline(v=alternation.cuts))
+xyplot(as.factor(button)~trial | sub.id, data=trials, as.table=TRUE, type="l", index.cond=list(i))
+alternation.outliers <- alternations$sub.id[alternations$alternation < alternation.cuts[1] | alternations$alternation > alternation.cuts[2]]
+xyplot(as.factor(button)~trial | sub.id, data=subset(trials, sub.id%in%alternation.outliers), as.table=TRUE, type="l")
+```
+
+# Remove Outliers and Duplicates
+
+```{r}
+(  outliers <- Reduce(union, list(duration.outliers, alternation.outliers, ip.duplicates))  )
+length(outliers)
+trials <- subset(trials, !sub.id%in%outliers)
+
+demographics$outlier <- demographics$sub.id %in% outliers
+xtabs(~condition+outlier, data=demographics)
+```
+
+# Save Cleaned Data
+
+```{r}
+data <- trials 
+save(data, file="cleaned_data.RData")
+
+```
+
+
