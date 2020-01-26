@@ -1,0 +1,227 @@
+---
+title: 'Futility of Utility: Common Ratio Effect Example'
+author: Neil Stewart
+date: '`r format(Sys.time(), "%d %B %Y")`'
+output: 
+   html_document:
+    toc: true
+    toc_depth: 3 
+---
+---
+
+Draw Figure 3 from Stewart, Canic, and Mullett (2020)
+
+```{r setup}
+library(tidyverse)
+library(ggExtra)
+library(data.table)
+library(boot)
+library(doMC)
+library(dplyr)
+#library(cowplot)
+registerDoMC(cores=20)
+options(width=100)
+```
+
+```{r}
+sessionInfo()
+```
+
+---
+
+# Choice Set
+
+Make a choice set with gambles of the form ``$p$ chance of $x$ otherwise $y$``
+
+Use probabilities where some are scaled up (i.e., large) and some are scaled down (i.e., small)
+
+Make all possible choices
+
+Throw out choices where one gamble dominates the other
+
+Add flags "Scaled Down", "Scaled Up" and "Common", indicating whether the probability $p$ for a gamble is unique to the scaled-up set of probabilities, unique to the scaled-down set of probabilities, or is common to both sets
+
+```{r}
+amounts <- c(10,20,50,100,200,500)
+scaled.up.probs <- c(5,10,25,50,75,100) / 100
+(  scaled.down.probs <- scaled.up.probs/5  )
+(  all.probs <- unique(c(scaled.down.probs, scaled.up.probs))  )
+
+# A is a pA chance of xA otherwise yA
+choices <- CJ(pA=all.probs, xA=amounts, yA=amounts, pB=all.probs, xB=amounts, yB=amounts)
+choices <- choices[xA>yA & xB>yB,] # x > y for both choices A and B
+choices <- choices[pA>pB,] # Make A the high probability choice
+
+# Remove dominated choices
+choices <- choices[!((xA>xB & yA>yB & pA>pB) | (xA<xB & yA<yB & pA<pB)),]
+
+choices[,EV.A:=pA*xA + (1-pA)*yA]
+choices[,EV.B:=pB*xB + (1-pB)*yB]
+choices <- choices[EV.A<EV.B, ] # Make A (which is the high probability choice) have lower EV than B
+```
+
+```{r}
+# Flags for scaled up or scaled down
+(  unique.scaled.down.probs <- setdiff(scaled.down.probs, scaled.up.probs)  )
+(  unique.scaled.up.probs <- setdiff(scaled.up.probs, scaled.down.probs)  )
+(  common.probs <- intersect(scaled.down.probs, scaled.up.probs)  )
+
+p.flag <- function(p) {
+	ifelse(p %in% unique.scaled.down.probs, "Scaled Down",
+		ifelse(p %in% unique.scaled.up.probs, "Scaled Up", 
+			ifelse(p %in% common.probs, "Common", NA)
+		)
+	)
+}
+
+choices[,pA.flag:=p.flag(pA)]
+choices[,pB.flag:=p.flag(pB)]
+
+head(choices)
+
+ggplot(choices, aes(y=pB, x=pA)) + geom_point(alpha=0.01, size=3) + geom_abline(intercept=0, slope=1) + facet_grid(pA.flag ~pB.flag)
+```
+
+# CPT Model
+
+Implement straight CPT with logit stochastic function
+
+DANGER!: Because we are using `data.table`s and passing is by reference, the `CPT.prediction` function is adding columns to the global variable `choices` 
+
+```{r}
+v <- function(x, alpha, beta, lambda, eta) { 
+	# Tversky and Kahmeman (1992) Equation 5		
+	ifelse(x>=0, (eta*x)^alpha, -lambda*abs(eta*x)^beta) 
+} 
+
+#inverse.v <- function(v, alpha, beta, lambda) {
+#	ifelse(v>=0, v^(1/alpha), -(abs(v)/lambda)^(1/beta))
+#}
+
+
+w <- function(p, gamma) {
+	# Tversky and Kahmeman (1992) Equation 6
+	p^gamma /((p^gamma + (1-p)^gamma)^(1/gamma)) 
+}
+
+logit <- function(x) { 1/(1+exp(-x)) }
+
+CPT.prediction <- function(alpha, beta, lambda, gamma, eta, choices) {
+	# Danger! Adds columns to data.table choices
+	choices[,CPT.A:=w(pA, gamma) * v(xA, alpha, beta, lambda, eta) + (1-w(pA, gamma))*v(yA, alpha, beta, lambda, eta)]
+	#choices[,CPT.CE.A:=inverse.v(CPT.A, alpha, beta, lambda, eta)]
+	choices[,CPT.B:=w(pB, gamma) * v(xB, alpha, beta, lambda, eta) + (1-w(pB, gamma))*v(yB, alpha, beta, lambda, eta)]
+	#choices[,CPT.CE.B:=inverse.v(CPT.B, alpha, beta, lambda)]
+	#choices[,CPT.prob.A:=logit(eta*(CPT.CE.A-CPT.CE.B))]
+	choices[,CPT.prob.A:=logit(eta*(CPT.A-CPT.B))]
+}
+```
+
+# EU Model
+
+Implement EU
+
+```{r}
+v.EU <- function(x, alpha, eta) {
+	(eta*x)^alpha
+}
+
+EU.predictions <- function(alpha, eta, choices) {
+	# Danger! Adds columns to data.table choices
+	choices[,EU.A:=pA*v.EU(xA, alpha, eta)+(1-pA)*v.EU(yA, alpha, eta)]
+	#choices[,EU.CE.A:=inverse.v.EU(EU.A, alpha)]
+	choices[,EU.B:=pB*v.EU(xB, alpha, eta)+(1-pB)*v.EU(yB, alpha, eta)]
+	#choices[,EU.CE.B:=inverse.v.EU(EU.B, alpha)]
+	#choices[,EU.prob.A:=logit(eta*(EU.CE.A-EU.CE.B))]
+	choices[,EU.prob.A:=logit(eta*(EU.A-EU.B))]
+}
+#EU.predictions(alpha=0.5, eta=1, choices)
+
+lnL <- function(data.probs, model.probs) {
+	sum(data.probs*log(model.probs) + (1-data.probs)*log(1-model.probs))
+}
+
+EU.lnL <- function(alpha, eta, choices) {
+	EU.predictions(alpha, eta, choices)
+	lnL(choices$CPT.prob.A, choices$EU.prob.A)
+}
+
+EU.lnL.wrapper <- function(p, choices) {
+	EU.lnL(alpha=p[1], eta=p[2], choices)
+}
+```
+
+
+# Simulation of 500 participants each making 200 choices
+
+There are 3006 choices. Make 500 fake participants, each with a random sample of 200 of the 3006 choices
+
+```{r cache=TRUE}
+no.choices <- 200
+no.subjects <- 500
+subject <- rep(1:no.subjects, times=no.choices)
+choices.index <- c(replicate(no.choices, sample(1:nrow(choices), size=no.subjects)))
+
+# Add CPT predictions to the data.table choices
+CPT.prediction(alpha=1,beta=1,lambda=1,gamma=0.5,eta=0.1,choices)
+
+simulated.choices <- choices[choices.index][,`:=`(subject=subject, choice=choices.index)]
+simulated.choices[,CPT.choice.A:=ifelse(runif(.N)<CPT.prob.A, 1, 0)]
+
+# Check creation of simulated binary choices
+simulated.choices[,CPT.prob.A.cut:=cut(CPT.prob.A, breaks=seq(0,1,.1), include.lowest=TRUE)]
+simulated.choices[,.(CPT.prop.A=mean(CPT.choice.A)),by=CPT.prob.A.cut][order(CPT.prob.A.cut),]
+simulated.choices[,CPT.prob.A.cut:=NULL]
+
+EU.lnL <- function(alpha, eta, choices) {
+	EU.predictions(alpha, eta, choices)
+	lnL(choices$CPT.choice.A, choices$EU.prob.A)
+}
+
+fit.one.subject <- function(simulated.choices) {
+	sol.all <- optim(par=c(alpha=1,eta=0.1), fn=EU.lnL.wrapper, control=list(fnscale= -1), choices=simulated.choices)
+	sol.not.up <- optim(par=c(alpha=1,eta=0.1), fn=EU.lnL.wrapper, control=list(fnscale= -1), choices=simulated.choices[pA.flag!="Scaled Up" & pB.flag!="Scaled Up",])
+	sol.not.down <- optim(par=c(alpha=1,eta=0.1), fn=EU.lnL.wrapper, control=list(fnscale= -1), choices=simulated.choices[pA.flag!="Scaled Down" & pB.flag!="Scaled Down",])
+	data.frame(subject=simulated.choices$subject[1],alpha.all=sol.all$par["alpha"], eta.all=sol.all$par["eta"],
+		alpha.scaled.down=sol.not.up$par["alpha"], eta.scaled.down=sol.not.up$par["eta"],
+		alpha.scaled.up=sol.not.down$par["alpha"], eta.scaled.up=sol.not.down$par["eta"]
+	)
+}
+
+params.for.each.subject <- foreach(s=1:no.subjects, .combine=rbind) %dopar% {
+	fit.one.subject(simulated.choices[subject==s,])
+}
+```
+
+# Bootstrapping and Figure 3
+
+```{r}
+boot.wrapper <- function(data, index) {
+	sapply(data[index,], median)
+}
+
+boot.result <- boot(data=params.for.each.subject[,-1],  statistic=boot.wrapper, R=1001,  parallel="multicore", ncpus=23)
+
+boot.ci.wrapper <- function(i, boot.result) {
+    boot.ci(boot.result, index=i, type="norm")$norm[2:3]
+}
+CIs.norm <- t(sapply(1:length(boot.result$t0), FUN=boot.ci.wrapper, boot.result=boot.result))
+colnames(CIs.norm) <- c("lower", "upper")
+
+point.estimates <- boot.wrapper(params.for.each.subject[,-1], 1:nrow(params.for.each.subject))
+booted.parameters <- as.data.table(cbind(mean=point.estimates, CIs.norm))
+booted.parameters[,label:=names(point.estimates)]
+
+booted.parameters[,parameter:=str_replace(label, "\\.(.+)", "")]
+booted.parameters[,choice.set:=str_replace(label, "(.+?)\\.", "")]
+
+booted.parameters
+
+booted.parameters[,parameter.label:=factor(parameter, levels=c("alpha", "eta"), labels=c(expression(alpha), expression(phi)))]
+
+ggplot(booted.parameters, aes(x=choice.set, y=mean, ymin=lower, ymax=upper)) + geom_point() + geom_linerange() + facet_wrap(~parameter.label, scales="free_y", labeller=label_parsed) + theme_classic() + scale_color_brewer(palette = "Dark2") + labs(x="Choice Subset", y="Parameter Value") + scale_x_discrete(labels=c("All Choices", "Scaled Down", "Scaled Up")) + theme(strip.background = element_blank(), strip.text=element_text(size=20))
+
+ggsave("simulation_common_ratio_booted_parameter_medians.pdf", width=6, height=4)
+```
+
+
