@@ -1,0 +1,289 @@
+---
+title: 'Glockner and Pachur (2012) Fits'
+author: Neil Stewart
+date: '`r format(Sys.time(), "%d %B %Y")`'
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3 
+---
+
+---
+
+Draw Figure 4 from Stewart, Canic, and Mullett (2020)
+
+```{r setup, message=FALSE}
+library(tidyverse)
+library(data.table)
+library(gridExtra)
+library(boot)
+options(width=120)
+```
+
+```{r}
+sessionInfo()
+```
+
+---
+
+# Read data and identify choice sets
+
+Data are from @GloecknerPachur12:
+
+"3.4.2. Material and design
+
+We used sets of two-outcome gamble problems that had been used in previous studies, which were rescaled to fit the same range of outcomes (i.e., from 1000 € to 1200 €). The first set (R-problems) consisted of 180 randomly generated problems investigated by Rieskamp (2008; scaled by factor 10): 60 pure gain, 60 pure loss, and 60 mixed gamble problems. The second set (GB-problems) consisted of 40 problems that had been constructed to differentiate between the priority heuristic and CPT (Gl&ouml;ockner & Betsch, 2008; scaled by varying factors and, if necessary, adapted to maintain the basic properties of the original problems). In both sets the expected values of the gambles within a problem were similar (i.e., the ratio of expected values was smaller than 1:2), thus avoiding obvious choices. The third set (HLG-problems) consisted of 10 problems designed by Holt and Laury (2002; low pay- off version scaled by factor 200) to measure risk aversion, with each problem involving a choice between a gamble with two medium outcomes and a gamble with a high and a low outcome; and eight problems which were adapted from tasks designed by G&auml;chter, Johnson, and Herrmann (2007) to measure loss aversion, with each problem involving a choice between a 50:50 chance of
+receiving a loss or gains of varying amounts (i.e., 100 € vs. 50, 100, 150, 200, 220, 240, 300, or 400) and a gamble that pays nothing with certainty. We included the specifically designed problems of the HLG set to improve parameter estimation of cumulative prospect theory’s key constructs.
+
+From the above sets, we created two sets of 138 problems each. First, all of the 18 HLG-problems and half of the GB-problems (randomly selected) were included in both sets to allow examining participants’ choice consistency. Second, using the odds/even method, the R-problems and the remaining GB-problems were distributed equally across the two sets. One set was presented at the first session, the other at the second session of the experiment. The order in which the two sets were presented was counterbalanced across participants. At the end of each session, one gamble problem was randomly selected and the participant received an additional bonus according to her choice in the respective problem with an exchange rate of 100:1."
+
+```{r}
+data <- fread("Glockner_MetaRead.csv")
+
+# Rename so one gamble is a 
+# X: "p1 chance of x1 otherwise a p2 chance of x2"
+# and the other is
+# Y: "q1 chance of y1 otherwise a q2 chance of y2"
+setnames(data, "o1", "x1")
+setnames(data, "o2", "x2")
+setnames(data, "o3", "y1")
+setnames(data, "o4", "y2")
+setnames(data, "p1", "p1")
+setnames(data, "p2", "p2")
+setnames(data, "p3", "q1")
+setnames(data, "p4", "q2")
+setnames(data, "decision", "Y.choice")
+setnames(data, "subject", "id")
+setnames(data, "condition", "choice.set") # choice.set refers to two sets of 138 choice.
+data[,Y.choice:=Y.choice-1]
+data[,gamble_no:=NULL] # Not unique for gambles---I make a new one later on
+
+# id==65 and id==66 only did 138 choices not 276, so delete them leaving 64 subjects
+data <- data[!id%in%c(65,66),]
+
+# id %in% c(13, 14, 15, 32, 36) repeated the same choice.set twice
+# Deleted, leaving 59 subjects
+xtabs(~id+choice.set, data=data)
+data <- data[!id%in%c(13, 14, 15, 32, 36),]
+
+# Each subject did 276 trials, 138 in each repetition
+
+# Match to Rieskamp (2008) choices
+R08 <- fread("Rieskamp_2008_choices.csv")
+setnames(R08, "A1_prob", "p1")
+setnames(R08, "A1_payoff", "x1")
+setnames(R08, "A2_prob", "p2")
+setnames(R08, "A2_payoff", "x2")
+setnames(R08, "B1_prob", "q1")
+setnames(R08, "B1_payoff", "y1")
+setnames(R08, "B2_prob", "q2")
+setnames(R08, "B2_payoff", "y2")
+R08[,x1:=10*x1]
+R08[,x2:=10*x2]
+R08[,y1:=10*y1]
+R08[,y2:=10*y2]
+R08[,choice.origin:="Rieskamp (2008)"]
+R08[,choicepair:=NULL]
+data <- merge(R08, data, by=c("p1", "x1", "p2", "x2", "q1", "y1", "q2", "y2"), all=TRUE)
+# Found and merged all 180 Rieskamp choices
+nrow(unique(data[choice.origin=="Rieskamp (2008)",.(p1, x1, p2, x2, q1, y1, q2, y2)]))
+
+# x1== -100 identifies 8 Gaechter et al. (2007) choices
+unique(data[x1== -100,.(p1, x1, p2, x2, q1, y1, q2, y2)])
+data[x1== -100, choice.origin:="Gaechter et al. (2007)"]
+
+# x1==400 & x2=320 identifies 10 Holt and Laury (2002) choices
+unique(data[x1== 400 & x2==320, .(p1, x1, p2, x2, q1, y1, q2, y2)])
+data[x1==400 & x2==320, choice.origin:="Holt and Laury (2002)"]
+
+# The rest must be Gloeckner and Betsch (2008)
+data[is.na(choice.origin), choice.origin:="Gloeckner & Betsch (2008)"]
+unique(data[choice.origin=="Gloeckner & Betsch (2008)", .(p1, x1, p2, x2, q1, y1, q2, y2)])
+
+# Sort data by id, repetition, then order to get trials into sensible order
+data <- data[order(id,repetition,order)]
+```
+
+---
+
+# Uncounterbalancing
+
+```{r}
+# Swap so first branch is always high amount
+data[x2>x1,`:=`(x1=x2, x2=x1, p1=p2, p2=p1)]
+data[y2>y1,`:=`(y1=y2, y2=y1, q1=q2, q2=q1)]
+
+# Swap so high EV gamble is gamble X
+#data[p1*x1+p2*x2<q1*y1+q2*y2, `:=`(x1=y1, x2=y2, p1=q1, p2=q2,
+#	y1=x1, y2=x2, q1=p1, q2=p2,
+#	Y.choice=1-Y.choice)]
+```
+
+---
+
+# Identify unique choices
+
+Add `choice.id` as a unique identifier for each gamble
+
+```{r}
+unique.choices <- unique(data[,.(p1,x1,p2,x2,q1,y1,q2,y2)])
+unique.choices[,choice.id:=as.factor(1:.N)]
+unique.choices[x1>=0 &x2>=0 & y1>=0 & y2>=0,domain:="Gains"]
+unique.choices[x1<=0 &x2<=0 & y1<=0 & y2<=0,domain:="Losses"]
+unique.choices[is.na(domain),domain:="Mixed"]
+data <- merge(data, unique.choices, by=c("p1", "x1", "p2", "x2", "q1", "y1", "q2", "y2"), all=TRUE)
+
+# Gaechter et al. (2007) and Holt and Laury (2002) choices are repeated in each choice set
+# Gloeckner & Betsch (2008) and Rieskamp (2008) are split in two, with half in each choice set
+xtabs(~choice.origin+choice.set, data[id==1,])
+xtabs(~choice.id+choice.set, data[! id%in% c(13, 14, 15, 32, 36),])
+
+# How many choices in the domain of gains?
+unique(data[,.(choice.id,domain)])[,.N,by=.(domain)]
+```
+
+---
+
+# For gains-only, what is distribution of amounts?
+
+```{r}
+# The distribution of amounts is the same for each person
+amounts <- data[id==1, .(x1,x2,y1,y2)]
+amounts <- melt(amounts, measure=c("x1", "x2", "y1", "y2"))
+ggplot(amounts, aes(x=value)) + geom_bar(color="black") # color="black" essential to plot every line!
+```
+
+---
+
+# Estimate $\alpha$ from EU with logistic stochastic component and CE fix
+
+```{r}
+logistic <- function(x) { 1 / (1+exp(-x)) }
+
+choice.probs <- function(alpha, phi, data) {
+	#EU.diff <- with(data, ((q1 * y1^alpha + q2 * y2^alpha)^(1/alpha)) - ((p1 * x1^alpha + p2 * x2^ alpha)^(1/alpha))  ) # CE bug fit
+	EU.diff <- with(data, ((q1 * y1^alpha + q2 * y2^alpha)) - ((p1 * x1^alpha + p2 * x2^ alpha))  ) # No bug fix
+	prob.Y <- logistic(phi * EU.diff)
+	prob.Y
+}
+
+lnL <- function(prob.Y, Y.choice) {
+	sum(log(ifelse(Y.choice, prob.Y, 1-prob.Y)))
+}
+
+wrapper <- function(p, data) {
+	prob.Y <- choice.probs(alpha=p[1], phi=p[2], data=data)
+	lnL(prob.Y, data$Y.choice)
+}
+
+wrapper(c(0.5, 0.1), data[id==1 & domain=="Gains",])
+
+sol <- optim(c(0.5,0.1), fn=wrapper, data=data[id==1 & domain=="Gains",], control=list(fnscale= -1))
+```
+
+```{r}
+fit <- function(data, start) {
+	sol.0 <- optim(start, fn=wrapper, data=data, control=list(fnscale= -1))
+	sol.1 <- optim(sol.0$par, fn=wrapper, data=data, control=list(fnscale= -1))
+	data.frame(id=data$id[1], alpha=sol.1$par[1], phi=sol.1$par[2], lnL=sol.1$value, convergence=sol.1$convergence)
+}
+fit(data[id==1 & domain=="Gains",], c(0.5, 0.01))
+
+gains <- data[domain=="Gains",]
+fits <- by(gains, INDICES=gains$id, FUN=fit, start=c(0.5,0.01))
+fits <- rbindlist(fits)
+
+ggplot(fits, aes(x=alpha, y=phi, label=id)) + geom_point() + geom_text(vjust= -0.5) + labs(x=expression(alpha), y=expression(phi))
+```
+
+---
+
+# Identify scaled up and scaled down choices
+
+```{r}
+grid.arrange(ggplot(unique.choices, aes(x=p1)) + geom_histogram(), 
+	ggplot(unique.choices, aes(x=q1)) + geom_histogram(),
+	nrow=2
+)
+
+unique.choices[, scale:=NA_character_]
+unique.choices[p1<1/2 & q1<1/2,scale:="Scaled Down"]
+unique.choices[p1>1/2 & q1>1/2,scale:="Scaled Up"]
+
+#unique.choices[(p1+q1)/2 < 1/2,scale:="Scaled Down"]
+#unique.choices[(p1+q1)/2 >= 1/2,scale:="Scaled Up"]
+
+unique.choices[,.N,by=scale]
+
+ggplot(unique.choices, aes(x=p1, y=q1, label=choice.id, col=scale)) + geom_point() + geom_text(vjust= -0.5)
+```
+
+---
+
+# $\alpha$ split scaled up/down 
+
+# Whole data fits
+
+```{r}
+gains <- merge(gains, unique.choices[,.(choice.id, scale)], by=c("choice.id"))
+
+scaled.up <- gains[scale=="Scaled Up",]
+scaled.down <- gains[scale=="Scaled Down",]
+
+fit(scaled.down, c(0.5,0.01))
+fit(scaled.up,   c(0.5,0.01))
+```
+
+## Individual participant fits, draw Figure 4
+
+```{r}
+fits.scaled.up <- by(scaled.up, INDICES=scaled.up$id, FUN=fit, start=c(0.5,0.01))
+fits.scaled.up <- rbindlist(fits.scaled.up)
+
+fits.scaled.down <- by(scaled.down, INDICES=scaled.down$id, FUN=fit, start=c(0.5,0.01))
+fits.scaled.down <- rbindlist(fits.scaled.down)
+
+all.fits <- merge(fits.scaled.up, fits.scaled.down, by="id", suffixes=c(".up", ".down"))
+all.fits <- merge(all.fits, fits, by="id")
+setnames(all.fits, "alpha", "alpha.all")
+setnames(all.fits, "phi", "phi.all")
+setnames(all.fits, "lnL", "lnL.all")
+setnames(all.fits, "convergence", "convergence.all")
+
+median(all.fits$alpha.up)
+median(all.fits$alpha.down)
+
+all.fits[,.(alpha.up, alpha.down, alpha.all)]
+
+boot.wrapper <- function(data, index) {
+	sapply(data[index,], median)
+}
+
+boot.result <- boot(data=all.fits[,.(alpha.up, alpha.down, alpha.all, phi.up, phi.down, phi.all)],  statistic=boot.wrapper, R=1001,  parallel="multicore", ncpus=23)
+
+boot.ci.wrapper <- function(i, boot.result) {
+    boot.ci(boot.result, index=i, type="norm")$norm[2:3]
+}
+CIs.norm <- t(sapply(1:length(boot.result$t0), FUN=boot.ci.wrapper, boot.result=boot.result))
+colnames(CIs.norm) <- c("lower", "upper")
+
+point.estimates <- boot.wrapper(all.fits[,.(alpha.up, alpha.down, alpha.all, phi.up, phi.down, phi.all)], 1:nrow(all.fits))
+booted.parameters <- as.data.table(cbind(mean=point.estimates, CIs.norm))
+booted.parameters[,label:=names(point.estimates)]
+
+booted.parameters[,c("parameter", "choice.set"):=tstrsplit(label, "\\.")]
+
+booted.parameters[,parameter.label:=factor(parameter, levels=c("alpha", "phi"), labels=c(expression(alpha), expression(phi)))]
+
+booted.parameters
+
+# Figure 4
+ggplot(booted.parameters, aes(x=choice.set, y=mean, ymin=lower, ymax=upper)) + geom_point() + geom_linerange() + facet_wrap(~parameter.label, scales="free_y", labeller=label_parsed) + theme_classic() + scale_color_brewer(palette = "Dark2") + labs(x="Choice Subset", y="Parameter Value") + scale_x_discrete(labels=c("All Choices", "Scaled Down", "Scaled Up")) + theme(strip.background = element_blank(), strip.text=element_text(size=20))
+
+ggsave("Gloeckner_Pachur_common_ratio_booted_parameter_medians.pdf",  width=6, height=4)
+```
+
+---
+
+# References
+
